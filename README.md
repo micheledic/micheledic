@@ -54,6 +54,6 @@
 | [\[FIX\] repair: read owner availability from the product source location](https://github.com/odoo/odoo/pull/285715) | `odoo/odoo` | 🟢 open | +29 / −1 | 2026-08-31 |
 | [\[18.0\]\[FIX\] account_financial_report: use 'in' on analytic_account_ids domain](https://github.com/OCA/account-financial-reporting/pull/1546) | `OCA/account-financial-reporting` | 🟣 merged | +1 / −1 | 2026-07-22 |
 
-<sub>Aggiornato automaticamente il 2026-09-26 08:11 UTC</sub>
+<sub>Aggiornato automaticamente il 2026-09-26 16:01 UTC</sub>
 <!-- AUTO:END -->
 ![github](https://github.com/micheledic/micheledic/blob/main/assets/github.png?raw=true)
