@@ -246,79 +246,78 @@ jobs:
           def bar_panel(title, rows, x, y, w, color):
               out = [f'<text x="{x}" y="{y}" fill="{C["mut"]}"># {xesc(title)}</text>']
               top = max((n for _, n in rows), default=1)
+              lx = x + 176
               for k, (label, n) in enumerate(rows):
-                  yy = y + 26 + k * 24
-                  bw = max(4, int((w - 220) * n / top))
-                  lab = label if len(label) <= 17 else label[:16] + "…"
+                  yy = y + 28 + k * 25
+                  bw = max(4, int((w - (lx - x) - 44) * n / top))
+                  lab = label if len(label) <= 18 else label[:17] + "…"
                   out.append(f'<text x="{x}" y="{yy}" fill="{C["fg"]}">{xesc(lab)}</text>'
-                             f'<rect x="{x + 170}" y="{yy - 12}" width="{bw}" height="14" rx="3" fill="{color}" opacity="0.85">'
+                             f'<rect x="{lx}" y="{yy - 12}" width="{bw}" height="14" rx="3" fill="{color}" opacity="0.85">'
                              f'<animate attributeName="width" from="0" to="{bw}" dur="1.2s" fill="freeze"/></rect>'
-                             f'<text x="{x + 178 + bw}" y="{yy}" fill="{C["mut"]}">{n}</text>')
-              return "".join(out)
+                             f'<text x="{lx + bw + 8}" y="{yy}" fill="{C["mut"]}">{n}</text>')
+              return "".join(out), 28 + len(rows) * 25
 
 
           def svg(s):
-              W, LH, x = 900, 23, 300
-              info = [
-                  [(USER, "green"), ("@", "fg"), ("github", "yellow")],
-                  [("─" * (len(USER) + 7), "mut")],
-                  ("PRs", f"{s['total']} pubbliche", "fg"),
-                  ("Merged", f"{s['merged']}  ({s['rate']}% merge rate)", "green"),
-                  ("Open", str(s["open"]), "cyan"),
-                  ("Closed", str(s["closed"]), "red"),
-                  ("Repos", f"{s['nrepos']} con contributi", "fg"),
-                  ("Branches", s["branches"], "purple"),
-                  ("Uptime", s["uptime"], "fg"),
-                  ("Last merge", s["last_merge"], "fg"),
-                  ("Oldest open", s["oldest_open"], "orange"),
-              ]
-              p = s["profile"]
-              if "commits" in p:
-                  info += [("Commits (1y)", str(p["commits"]), "fg"), ("Reviews (1y)", str(p["reviews"]), "fg"),
-                           ("Contribs (1y)", str(p["contribs"]), "fg")]
-              if "followers" in p:
-                  info.append(("Followers", f"{p['followers']}" + (f"   ★ {p['stars']}" if "stars" in p else ""), "fg"))
-
+              """Layout verticale 540px: leggibile anche da telefono."""
+              W, LH, X, VX = 540, 25, 28, 170
               body = []
-              y = 78
-              for line in info:
-                  if isinstance(line, list):
-                      spans = "".join(f'<tspan fill="{C[c]}">{xesc(t)}</tspan>' for t, c in line)
-                      body.append(f'<text x="{x}" y="{y}" font-weight="bold">{spans}</text>')
-                  else:
-                      k, v, c = line
-                      body.append(f'<text x="{x}" y="{y}"><tspan fill="{C["blue"]}" font-weight="bold">{xesc(k)}</tspan>'
-                                  f'<tspan fill="{C["mut"]}">: </tspan><tspan fill="{C[c]}">{xesc(v)}</tspan></text>')
-                  y += LH
-              y += 8
+              # header: invader + nome
+              ps, ax, ay = 9, X, 62
+              anim = lambda v: f'<animate attributeName="opacity" values="{v}" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/>'
+              body.append(f'<g>{anim("1;0")}{pixels(CRAB, ax, ay, ps, C["purple"])}</g>'
+                          f'<g opacity="0">{anim("0;1")}{pixels(CRAB2, ax, ay, ps, C["purple"])}</g>')
+              hx = X + 11 * ps + 26
+              body.append(f'<text x="{hx}" y="{ay + 16}" font-weight="bold" font-size="18">'
+                          f'<tspan fill="{C["green"]}">{xesc(USER)}</tspan><tspan fill="{C["fg"]}">@</tspan>'
+                          f'<tspan fill="{C["yellow"]}">github</tspan></text>'
+                          f'<line x1="{hx}" y1="{ay + 28}" x2="{W - X}" y2="{ay + 28}" stroke="{C["mut"]}"/>'
+                          f'<text x="{hx}" y="{ay + 50}" fill="{C["mut"]}">PLAYER 1 · SCORE {s["merged"] * 100:06d}</text>')
               for k, c in enumerate(["red", "orange", "yellow", "green", "cyan", "blue", "purple", "fg"]):
-                  body.append(f'<rect x="{x + k * 30}" y="{y - 14}" width="26" height="16" rx="2" fill="{C[c]}"/>')
-              y += 44
+                  body.append(f'<rect x="{hx + k * 26}" y="{ay + 60}" width="22" height="12" rx="2" fill="{C[c]}"/>')
 
-              art_s, art_x, art_y = 20, 40, 100
-              anim = lambda vals: f'<animate attributeName="opacity" values="{vals}" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/>'
-              art = (f'<g>{anim("1;0")}{pixels(CRAB, art_x, art_y, art_s, C["purple"])}</g>'
-                     f'<g opacity="0">{anim("0;1")}{pixels(CRAB2, art_x, art_y, art_s, C["purple"])}</g>'
-                     f'<text x="{art_x + 110}" y="{art_y + 200}" fill="{C["mut"]}" text-anchor="middle" font-size="12">'
-                     f'PLAYER 1 · SCORE {s["merged"] * 100:06d}</text>')
+              p = s["profile"]
+              info = [("PRs", f"{s['total']} pubbliche", "fg"),
+                      ("Merged", f"{s['merged']} ({s['rate']}% merge rate)", "green"),
+                      ("Open", str(s["open"]), "cyan"),
+                      ("Closed", str(s["closed"]), "red"),
+                      ("Repos", f"{s['nrepos']} con contributi", "fg"),
+                      ("Branches", s["branches"], "purple"),
+                      ("Uptime", s["uptime"], "fg"),
+                      ("Last merge", s["last_merge"], "fg"),
+                      ("Oldest open", s["oldest_open"], "orange")]
+              if "commits" in p:
+                  info += [("Commits 1y", str(p["commits"]), "fg"), ("Reviews 1y", str(p["reviews"]), "fg"),
+                           ("Contribs 1y", str(p["contribs"]), "fg")]
+              if "followers" in p:
+                  info.append(("Followers", f"{p['followers']}" + (f"  ★ {p['stars']}" if "stars" in p else ""), "fg"))
+              y = ay + 118
+              for k, v, c in info:
+                  body.append(f'<text x="{X}" y="{y}" fill="{C["blue"]}" font-weight="bold">{xesc(k)}</text>'
+                              f'<text x="{VX - 16}" y="{y}" fill="{C["mut"]}">:</text>'
+                              f'<text x="{VX}" y="{y}" fill="{C[c]}">{xesc(v)}</text>')
+                  y += LH
 
-              body.append(f'<line x1="30" y1="{y - 22}" x2="{W - 30}" y2="{y - 22}" stroke="{C["mut"]}" stroke-dasharray="4 4" opacity="0.5"/>')
-              body.append(bar_panel("top repos", s["top_repos"], 40, y, 420, C["purple"]))
-              body.append(bar_panel("pr types", s["top_kinds"], 480, y, 400, C["cyan"]))
-              y += 26 + max(len(s["top_repos"]), len(s["top_kinds"]), 1) * 24 + 26
-
-              prompt = (f'<text x="40" y="{y}"><tspan fill="{C["green"]}">❯ </tspan>'
-                        f'<tspan fill="{C["fg"]}">git push origin main </tspan><tspan fill="{C["fg"]}">█'
-                        f'<animate attributeName="opacity" values="1;0" dur="1s" calcMode="discrete" repeatCount="indefinite"/>'
-                        f'</tspan></text>')
-              H = y + 30
+              y += 6
+              body.append(f'<line x1="{X}" y1="{y}" x2="{W - X}" y2="{y}" stroke="{C["mut"]}" stroke-dasharray="4 4" opacity="0.6"/>')
+              y += 32
+              for title, rows, col in (("top repos", s["top_repos"], C["purple"]), ("pr types", s["top_kinds"], C["cyan"])):
+                  g, h = bar_panel(title, rows, X, y, W - 2 * X, col)
+                  body.append(g)
+                  y += h + 22
+              y += 8
+              body.append(f'<text x="{X}" y="{y}"><tspan fill="{C["green"]}">❯ </tspan>'
+                          f'<tspan fill="{C["fg"]}">git push origin main </tspan><tspan fill="{C["fg"]}">█'
+                          f'<animate attributeName="opacity" values="1;0" dur="1s" calcMode="discrete" repeatCount="indefinite"/>'
+                          f'</tspan></text>')
+              H = y + 28
               return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
           <style>text{{font-family:"JetBrains Mono","Fira Code",Consolas,"DejaVu Sans Mono",monospace;font-size:15px}}</style>
           <rect width="{W}" height="{H}" rx="12" fill="{C["bg"]}"/>
           <path d="M12 0h{W - 24}a12 12 0 0 1 12 12v24h-{W}v-24a12 12 0 0 1 12-12z" fill="{C["bar"]}"/>
           <circle cx="24" cy="18" r="6" fill="#ff5f57"/><circle cx="44" cy="18" r="6" fill="#febc2e"/><circle cx="64" cy="18" r="6" fill="#28c840"/>
-          <text x="{W / 2}" y="23" fill="{C["mut"]}" text-anchor="middle" font-size="13">{xesc(USER)}@github: ~ — neofetch</text>
-          {art}{"".join(body)}{prompt}
+          <text x="{W / 2 + 20}" y="23" fill="{C["mut"]}" text-anchor="middle" font-size="13">{xesc(USER)}@github: ~ — neofetch</text>
+          {"".join(body)}
           </svg>'''
 
 
@@ -346,7 +345,7 @@ jobs:
               o = ['<div align="center">', "",
                    f'<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=2800'
                    f'&pause=900&color=BB9AF7&center=true&vCenter=true&width=620&lines={lines}"/>', "",
-                   '<img src="assets/neofetch.svg" width="100%"/>', "",
+                   '<img src="assets/neofetch.svg" alt="neofetch"/>', "",
                    badge("PRs", s["total"], "bb9af7", "git") + " " + badge("merged", s["merged"], "9ece6a", "github") + " " +
                    badge("open", s["open"], "7dcfff", "githubactions") + " " + badge("merge rate", f"{s['rate']}%", "e0af68", "codecov"),
                    "", "</div>", "",
@@ -388,11 +387,11 @@ jobs:
               s = dict(total=len(prs), merged=len(merged_all), open=len(open_all), closed=closed,
                        rate=round(100 * len(merged_all) / max(1, len(merged_all) + closed)),
                        nrepos=len({p["repo"] for p in prs}),
-                       uptime=f"{up // 365}y {up % 365 // 30}m (prima PR {first[:10]})",
-                       last_merge=f"{ago(merged_all[0]['merged'])} · {merged_all[0]['repo']}" if merged_all else "–",
+                       uptime=f"{up // 365}y {up % 365 // 30}m · dal {first[:10]}",
+                       last_merge=f"{ago(merged_all[0]['merged'])} · {merged_all[0]['repo'][:24]}" if merged_all else "–",
                        oldest_open=f"{max(days(p['created']) for p in open_all)} giorni" if open_all else "–",
                        branches=" · ".join(f"{b} ({n})" for b, n in
-                                           Counter(p["branch"] or p["ver"] for p in prs if p["branch"] or p["ver"]).most_common(4)) or "–",
+                                           Counter(p["branch"] or p["ver"] for p in prs if p["branch"] or p["ver"]).most_common(3)) or "–",
                        top_repos=Counter(p["repo"] for p in prs).most_common(5),
                        top_kinds=Counter(p["kind"] or "altro" for p in prs).most_common(5),
                        profile=profile())
@@ -403,6 +402,8 @@ jobs:
               if START not in text or END not in text:
                   text = text.rstrip() + f"\n\n{START}\n{END}\n"
               text = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: block, text, flags=re.S)
+              # riga vuota dopo il blocco: senza, il markdown che segue viene mostrato come testo
+              text = re.sub(re.escape(END) + r"[ \t]*\n*", END + "\n\n", text)
               open(README, "w", encoding="utf-8").write(text.lstrip())
               print(f"ok: {s['total']} PR, {s['merged']} merged, {s['open']} open")
 
