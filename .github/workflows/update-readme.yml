@@ -1,0 +1,162 @@
+name: Aggiorna profile README
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # ogni 6 ore
+  workflow_dispatch:         # avvio manuale dalla tab Actions
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Genera contenuto
+        env:
+          GH_USER: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - << 'PYEOF'
+          #!/usr/bin/env python3
+          """Aggiorna il profile README con PR pubbliche recenti e statistiche GitHub."""
+          import json, os, re, sys, urllib.request
+          from collections import Counter
+          from datetime import datetime, timezone
+
+          USER = os.environ["GH_USER"]
+          TOKEN = os.environ["GH_TOKEN"]
+          README = os.environ.get("README_PATH", "README.md")
+          START, END = "<!-- AUTO:START -->", "<!-- AUTO:END -->"
+
+          QUERY = """
+          query($login: String!, $qMerged: String!, $qRecent: String!,
+                $qAll: String!, $qMergedCount: String!, $qOpen: String!) {
+            user(login: $login) {
+              followers { totalCount }
+              repositories(ownerAffiliations: OWNER, privacy: PUBLIC, isFork: false, first: 100,
+                           orderBy: {field: STARGAZERS, direction: DESC}) {
+                totalCount
+                nodes { stargazerCount primaryLanguage { name } }
+              }
+              contributionsCollection {
+                totalCommitContributions totalPullRequestContributions
+                totalPullRequestReviewContributions totalIssueContributions
+                contributionCalendar { totalContributions }
+              }
+            }
+            allPRs: search(query: $qAll, type: ISSUE, first: 0) { issueCount }
+            mergedPRs: search(query: $qMergedCount, type: ISSUE, first: 0) { issueCount }
+            openPRs: search(query: $qOpen, type: ISSUE, first: 0) { issueCount }
+            merged: search(query: $qMerged, type: ISSUE, first: 30) {
+              nodes { ... on PullRequest { title url mergedAt repository { nameWithOwner } } }
+            }
+            recent: search(query: $qRecent, type: ISSUE, first: 20) {
+              nodes { ... on PullRequest {
+                title url state isDraft createdAt additions deletions
+                repository { nameWithOwner }
+              } }
+            }
+          }
+          """
+
+          def gql(query, variables):
+              req = urllib.request.Request(
+                  "https://api.github.com/graphql",
+                  data=json.dumps({"query": query, "variables": variables}).encode(),
+                  headers={"Authorization": f"bearer {TOKEN}", "Content-Type": "application/json"},
+              )
+              with urllib.request.urlopen(req) as r:
+                  data = json.load(r)
+              if "errors" in data:
+                  sys.exit(f"Errore GraphQL: {data['errors']}")
+              return data["data"]
+
+          def esc(text):
+              return text.replace("|", "\\|").replace("[", "\\[").replace("]", "\\]")
+
+          def day(iso):
+              return iso[:10]
+
+          STATE_ICON = {"MERGED": "🟣 merged", "OPEN": "🟢 open", "CLOSED": "🔴 closed"}
+
+          def render(d):
+              u = d["user"]
+              c = u["contributionsCollection"]
+              repos = u["repositories"]["nodes"]
+              stars = sum(r["stargazerCount"] for r in repos)
+              langs = Counter(r["primaryLanguage"]["name"] for r in repos if r["primaryLanguage"])
+              total, merged_n = d["allPRs"]["issueCount"], d["mergedPRs"]["issueCount"]
+              rate = f"{merged_n / total * 100:.0f}%" if total else "–"
+
+              merged = sorted((p for p in d["merged"]["nodes"] if p), key=lambda p: p["mergedAt"], reverse=True)[:10]
+              recent = [p for p in d["recent"]["nodes"] if p]
+
+              out = ["### 📊 Statistiche", "",
+                     "| | |", "|---|---|",
+                     f"| PR totali | **{total}** |",
+                     f"| PR mergiate | **{merged_n}** ({rate}) |",
+                     f"| PR aperte | **{d['openPRs']['issueCount']}** |",
+                     f"| Contributi ultimo anno | **{c['contributionCalendar']['totalContributions']}** |",
+                     f"| Commit ultimo anno | **{c['totalCommitContributions']}** |",
+                     f"| Review ultimo anno | **{c['totalPullRequestReviewContributions']}** |",
+                     f"| Issue aperte ultimo anno | **{c['totalIssueContributions']}** |",
+                     f"| Repo pubblici | **{u['repositories']['totalCount']}** |",
+                     f"| ⭐ Stelle ricevute | **{stars}** |",
+                     f"| Follower | **{u['followers']['totalCount']}** |"]
+              if langs:
+                  out += ["", "**Linguaggi principali:** " + " · ".join(f"`{l}` ({n})" for l, n in langs.most_common(6))]
+
+              out += ["", "### ✅ Ultime 10 PR mergiate", ""]
+              out += [f"- [{esc(p['title'])}]({p['url']}) in `{p['repository']['nameWithOwner']}` — {day(p['mergedAt'])}"
+                      for p in merged] or ["_Nessuna PR mergiata._"]
+
+              out += ["", "### 🔀 Ultime 20 PR", "",
+                      "| PR | Repo | Stato | Diff | Data |", "|---|---|---|---|---|"]
+              for p in recent:
+                  state = "⚪ draft" if p["isDraft"] and p["state"] == "OPEN" else STATE_ICON[p["state"]]
+                  out.append(f"| [{esc(p['title'])}]({p['url']}) | `{p['repository']['nameWithOwner']}` | {state} "
+                             f"| +{p['additions']} / −{p['deletions']} | {day(p['createdAt'])} |")
+
+              now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+              out += ["", f"<sub>Aggiornato automaticamente il {now}</sub>"]
+              return "\n".join(out)
+
+          def main():
+              data = gql(QUERY, {
+                  "login": USER,
+                  "qMerged": f"author:{USER} is:pr is:public is:merged sort:updated-desc",
+                  "qRecent": f"author:{USER} is:pr is:public sort:created-desc",
+                  "qAll": f"author:{USER} is:pr is:public",
+                  "qMergedCount": f"author:{USER} is:pr is:public is:merged",
+                  "qOpen": f"author:{USER} is:pr is:public is:open",
+              })
+              block = f"{START}\n{render(data)}\n{END}"
+              if os.path.exists(README):
+                  with open(README, encoding="utf-8") as f:
+                      text = f.read()
+              else:
+                  text = f"# Ciao, sono {USER} 👋\n\nModifica questa presentazione quando vuoi.\n"
+              if START not in text or END not in text:
+                  text = text.rstrip() + f"\n\n{START}\n{END}\n"
+              new = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: block, text, flags=re.S)
+              with open(README, "w", encoding="utf-8") as f:
+                  f.write(new)
+              print("README aggiornato.")
+
+          if __name__ == "__main__":
+              main()
+          PYEOF
+
+      - name: Commit se cambiato
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --cached --quiet || (git commit -m "chore: aggiorna README" && git push)
