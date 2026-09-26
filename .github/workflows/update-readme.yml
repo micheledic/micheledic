@@ -343,35 +343,32 @@ jobs:
               return f"`{'█' * round(r * 8)}{'░' * (8 - round(r * 8))}` {round(r * 100)}%"
 
 
-          def repo_rows(rows, grand):
-              return [f"| [`{r}`](https://github.com/{r}) | **{t}** <sub>{round(100 * t / grand)}%</sub> | {m} | {o} | {c} "
-                      f"| {rate_bar(m, c)} |" for r, t, m, o, c in rows]
+          def stat_cells(t, m, o, c, pct, bold):
+              w = (lambda x: f"**{x}**") if bold else str
+              return f"{w(t)} <sub>{pct}%</sub> | {w(m)} | {w(o)} | {w(c)} | {rate_bar(m, c)}"
 
 
-          def repo_table(stats):
-              head = ["| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |", "|---|:-:|:-:|:-:|:-:|---|"]
-              T = [sum(x[i] for x in stats) for i in range(1, 5)]
-              total = f"| **Σ totale** | **{T[0]}** | **{T[1]}** | **{T[2]}** | **{T[3]}** | {rate_bar(T[1], T[3])} |"
-              o = ["## `❯ gh pr stats --group-by repo`", ""] + head + repo_rows(stats[:10], max(1, T[0])) + [total]
-              if len(stats) > 10:
-                  o += ["", f"<details><summary>📂 altri {len(stats) - 10} repository</summary>", ""] + head + \
-                       repo_rows(stats[10:], max(1, T[0])) + ["", "</details>"]
-              o += ["", "<sub>PR: totale e % sul totale · ✅ merged · 🟢 open · ❌ closed senza merge · merge rate = merged / (merged + closed)</sub>", ""]
+          def repo_branch_rows(repo_stats, grand):
+              o = []
+              for r, t, m, op, c, branches in repo_stats:
+                  o.append(f"| 📦 **[`{r}`](https://github.com/{r})** | {stat_cells(t, m, op, c, round(100 * t / grand), True)} |")
+                  for k, (b, bt, bm, bo, bc) in enumerate(branches):
+                      tree = "└─" if k == len(branches) - 1 else "├─"
+                      o.append(f"| &emsp;{tree} 🌿 `{b}` | {stat_cells(bt, bm, bo, bc, round(100 * bt / t), False)} |")
               return o
 
 
-          def branch_table(stats):
+          def repo_table(stats):
               grand = max(1, sum(x[1] for x in stats))
-              head = ["| Branch | PR | ✅ | 🟢 | ❌ | Merge rate |", "|---|:-:|:-:|:-:|:-:|---|"]
-              o = ["## `❯ gh pr stats --group-by branch`", ""] + head
-              for b, t, m, op, c, _ in stats:
-                  o.append(f"| 🌿 `{b}` | **{t}** <sub>{round(100 * t / grand)}%</sub> | {m} | {op} | {c} | {rate_bar(m, c)} |")
-              o += ["", "<details><summary>🔍 dettaglio per branch → repository</summary>", ""]
-              for b, t, m, op, c, repos in stats:
-                  o += [f"#### 🌿 `{b}` · {t} PR · ✅ {m} · 🟢 {op} · ❌ {c}", "",
-                        "| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |", "|---|:-:|:-:|:-:|:-:|---|"]
-                  o += repo_rows(repos, max(1, t)) + [""]
-              o += ["</details>", "", "<sub>branch = branch target della PR · % = quota sul totale (nel dettaglio: sul branch)</sub>", ""]
+              head = ["| Repo / branch | PR | ✅ | 🟢 | ❌ | Merge rate |", "|---|:-:|:-:|:-:|:-:|---|"]
+              T = [sum(x[i] for x in stats) for i in range(1, 5)]
+              total = f"| **Σ totale** | **{T[0]}** <sub>100%</sub> | **{T[1]}** | **{T[2]}** | **{T[3]}** | {rate_bar(T[1], T[3])} |"
+              o = ["## `❯ gh pr stats --group-by repo,branch`", ""] + head + repo_branch_rows(stats[:10], grand) + [total]
+              if len(stats) > 10:
+                  o += ["", f"<details><summary>📂 altri {len(stats) - 10} repository</summary>", ""] + head + \
+                       repo_branch_rows(stats[10:], grand) + ["", "</details>"]
+              o += ["", "<sub>📦 repo: % sul totale delle PR · 🌿 branch (di cui): % sulle PR del repo · "
+                    "✅ merged · 🟢 open · ❌ closed senza merge · merge rate = merged / (merged + closed)</sub>", ""]
               return o
 
 
@@ -388,7 +385,7 @@ jobs:
                    '<img src="assets/neofetch.svg" alt="neofetch"/>', "",
                    badge("PRs", s["total"], "bb9af7", "git") + " " + badge("merged", s["merged"], "9ece6a", "github") + " " +
                    badge("open", s["open"], "7dcfff", "githubactions") + " " + badge("merge rate", f"{s['rate']}%", "e0af68", "codecov"),
-                   "", "</div>", ""] + repo_table(s["repo_stats"]) + branch_table(s["branch_stats"]) + [
+                   "", "</div>", ""] + repo_table(s["repo_stats"]) + [
                    "## `❯ gh pr list --author @me --state merged -L 20`", "",
                    "| | PR | Repo | Branch | Merged |", "|:-:|---|---|:-:|---|"]
               for p in merged:
@@ -431,7 +428,9 @@ jobs:
 
 
           def repo_stats(prs):
-              return sorted(group_stats(prs, lambda p: p["repo"]), key=lambda x: (-x[1], -x[2], x[0]))
+              rows = sorted(group_stats(prs, lambda p: p["repo"]), key=lambda x: (-x[1], -x[2], x[0]))
+              return [(*r, sorted(group_stats([p for p in prs if p["repo"] == r[0]], branch_of),
+                                  key=lambda x: branch_key(x[0]))) for r in rows]
 
 
           def branch_of(p):
@@ -446,14 +445,6 @@ jobs:
               if not m:
                   return (2, 0.0, b)
               return (1, -(int(m.group(1)) + int(m.group(2)) / 100), b)
-
-
-          def branch_stats(prs):
-              out = []
-              for b, *v in sorted(group_stats(prs, branch_of), key=lambda x: branch_key(x[0])):
-                  sub = [p for p in prs if branch_of(p) == b]
-                  out.append((b, *v, repo_stats(sub)))
-              return out
 
 
           def main():
@@ -475,7 +466,6 @@ jobs:
                        top_repos=Counter(p["repo"] for p in prs).most_common(5),
                        top_kinds=Counter(p["kind"] or "altro" for p in prs).most_common(5),
                        repo_stats=repo_stats(prs),
-                       branch_stats=branch_stats(prs),
                        profile=profile())
               os.makedirs(ASSETS, exist_ok=True)
               open(f"{ASSETS}/neofetch.svg", "w", encoding="utf-8").write(svg(s))
