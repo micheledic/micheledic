@@ -3,7 +3,7 @@
 
 <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=2800&pause=900&color=BB9AF7&center=true&vCenter=true&width=620&lines=%24%20whoami%20%E2%86%92%20micheledic;163%20pull%20requests%20and%20counting;72%20merged%20%C2%B7%2041%20in%20review;git%20commit%20-m%20%27fix%3A%20everything%27"/>
 
-<img src="assets/neofetch.svg" width="100%"/>
+<img src="assets/neofetch.svg" alt="neofetch"/>
 
 <img src="https://img.shields.io/badge/PRs-163-bb9af7?style=for-the-badge&logo=git&logoColor=white&labelColor=1a1b26"/> <img src="https://img.shields.io/badge/merged-72-9ece6a?style=for-the-badge&logo=github&logoColor=white&labelColor=1a1b26"/> <img src="https://img.shields.io/badge/open-41-7dcfff?style=for-the-badge&logo=githubactions&logoColor=white&labelColor=1a1b26"/> <img src="https://img.shields.io/badge/merge%20rate-59%25-e0af68?style=for-the-badge&logo=codecov&logoColor=white&labelColor=1a1b26"/>
 
@@ -68,8 +68,9 @@
   <img alt="snake" src="assets/snake.svg"/>
 </picture>
 
-<sub>⚙️ build <code>2026-09-26 18:29 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
+<sub>⚙️ build <code>2026-09-26 18:36 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
 
 </div>
 <!-- AUTO:END -->
+
 ![github](https://github.com/micheledic/micheledic/blob/main/assets/github.png?raw=true)
