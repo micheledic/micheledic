@@ -37,7 +37,7 @@ jobs:
           USER = os.environ["GH_USER"]
           TOKEN = os.environ.get("GH_TOKEN", "")
           README, ASSETS = "README.md", "assets"
-          CACHE = f"{ASSETS}/pr-cache.json"
+          CACHE = f"{ASSETS}/pr-cache-v2.json"
           START, END = "<!-- AUTO:START -->", "<!-- AUTO:END -->"
           MERGE_BOTS = {"robodoo", "OCA-git-bot", "bors[bot]", "mergify[bot]"}
           NOW = datetime.now(timezone.utc)
@@ -113,7 +113,7 @@ jobs:
               via = None
               if not merged and i["state"] == "closed" and any(l.lower().startswith("merged") for l in labels):
                   merged, via = i["closed_at"], "bot"
-              return dict(repo=i["repository_url"].split("/repos/")[1], number=i["number"], url=i["html_url"],
+              return dict(node_id=i["node_id"], branch=None, repo=i["repository_url"].split("/repos/")[1], number=i["number"], url=i["html_url"],
                           title=clean, kind=kind, ver=ver, state=i["state"], draft=i.get("draft", False),
                           created=i["created_at"], merged=merged, via=via)
 
@@ -136,25 +136,76 @@ jobs:
                   return None  # non salvare in cache, riprova al prossimo giro
 
 
-          def resolve_bot_merges(prs):
+          GQL_PRS = """query($ids:[ID!]!){nodes(ids:$ids){... on PullRequest{url baseRefName mergedAt
+            timelineItems(itemTypes:[CLOSED_EVENT],last:1){nodes{... on ClosedEvent{createdAt actor{login} closer{__typename}}}}}}}"""
+
+
+          def gql_info(chunk):
+              """Branch target + merge via bot per 50 PR in una sola chiamata GraphQL."""
+              d = api(f"{API}/graphql", data={"query": GQL_PRS, "variables": {"ids": [p["node_id"] for p in chunk]}},
+                      tries=2, wait=5)
+              if not d.get("data"):
+                  raise RuntimeError(d.get("errors"))
+              out = {}
+              for n in d["data"]["nodes"] or []:
+                  if not n or "url" not in n:
+                      continue
+                  merged = n["mergedAt"]
+                  ev = (n["timelineItems"]["nodes"] or [None])[-1]
+                  if not merged and ev and ((ev.get("closer") or {}).get("__typename") == "Commit"
+                                            or (ev.get("actor") or {}).get("login") in MERGE_BOTS):
+                      merged = ev["createdAt"]
+                  out[n["url"]] = {"base": n["baseRefName"], "merged": merged or ""}
+              return out
+
+
+          def rest_info(p):
+              """Fallback REST, una PR alla volta."""
+              try:
+                  pr = api(f"{API}/repos/{p['repo']}/pulls/{p['number']}", tries=2, wait=5)
+              except Exception as ex:
+                  print("warn:", p["url"], ex)
+                  return None
+              merged = pr.get("merged_at") or ""
+              if not merged and pr["state"] == "closed":
+                  m = closed_by_merge(p)
+                  if m is None:
+                      return None
+                  merged = m
+              return {"base": pr["base"]["ref"], "merged": merged}
+
+
+          def enrich(prs):
               try:
                   cache = json.load(open(CACHE))
               except Exception:
                   cache = {}
+              todo = [p for p in prs if p["state"] == "open" or p["url"] not in cache]
+              info = {}
+              for k in range(0, len(todo), 50):
+                  try:
+                      info.update(gql_info(todo[k:k + 50]))
+                  except Exception as ex:
+                      print("warn: graphql PR", ex)
+                      break
               fails = 0
-              for p in prs:
-                  if p["merged"] or p["state"] != "closed":
+              for p in todo:
+                  if p["url"] in info or fails >= 3:
                       continue
-                  if p["url"] not in cache:
-                      if fails >= 3:  # API non disponibile: riprova al prossimo giro
-                          continue
-                      r = closed_by_merge(p)
-                      if r is None:
-                          fails += 1
-                          continue
+                  r = rest_info(p)
+                  if r is None:
+                      fails += 1
+                  else:
+                      info[p["url"]] = r
+              for p in prs:
+                  r = info.get(p["url"]) or cache.get(p["url"])
+                  if not r:
+                      continue
+                  if p["state"] != "open":  # PR chiuse: dati definitivi, vanno in cache
                       cache[p["url"]] = r
-                  if cache[p["url"]]:
-                      p["merged"], p["via"] = cache[p["url"]], "bot"
+                  p["branch"] = r["base"]
+                  if not p["merged"] and p["state"] == "closed" and r["merged"]:
+                      p["merged"], p["via"] = r["merged"], "bot"
               os.makedirs(ASSETS, exist_ok=True)
               json.dump(cache, open(CACHE, "w"), indent=0, sort_keys=True)
 
@@ -216,6 +267,7 @@ jobs:
                   ("Open", str(s["open"]), "cyan"),
                   ("Closed", str(s["closed"]), "red"),
                   ("Repos", f"{s['nrepos']} con contributi", "fg"),
+                  ("Branches", s["branches"], "purple"),
                   ("Uptime", s["uptime"], "fg"),
                   ("Last merge", s["last_merge"], "fg"),
                   ("Oldest open", s["oldest_open"], "orange"),
@@ -275,6 +327,11 @@ jobs:
               return t.replace("|", "\\|").replace("[", "\\[").replace("]", "\\]").replace("<", "&lt;")
 
 
+          def ver(p):
+              v = p["branch"] or p["ver"]
+              return f"`{v}`" if v else "–"
+
+
           def kind_cell(p):
               return f'{KINDS.get(p["kind"], "🔹")} `{p["kind"] or "PR"}`'
 
@@ -294,21 +351,21 @@ jobs:
                    badge("open", s["open"], "7dcfff", "githubactions") + " " + badge("merge rate", f"{s['rate']}%", "e0af68", "codecov"),
                    "", "</div>", "",
                    "## `❯ gh pr list --author @me --state merged -L 20`", "",
-                   "| | PR | Repo | Ver | Merged |", "|:-:|---|---|:-:|---|"]
+                   "| | PR | Repo | Branch | Merged |", "|:-:|---|---|:-:|---|"]
               for p in merged:
                   bot = " 🤖" if p["via"] == "bot" else ""
                   o.append(f'| {kind_cell(p)} | [{md(p["title"][:70])}]({p["url"]}) | `{p["repo"]}` | '
-                           f'{p["ver"] or "–"} | `{p["merged"][:10]}`{bot} |')
+                           f'{ver(p)} | `{p["merged"][:10]}`{bot} |')
               if not merged:
                   o.append("| | _nessuna PR mergiata_ | | | |")
               o += ["", "## `❯ gh pr list --author @me --state open -L 20`", "",
-                    "| | PR | Repo | Ver | Aperta | Età |", "|:-:|---|---|:-:|---|:-:|"]
+                    "| | PR | Repo | Branch | Aperta | Età |", "|:-:|---|---|:-:|---|:-:|"]
               for p in opened:
                   d = days(p["created"])
                   heat = "🟢" if d < 30 else "🟡" if d < 90 else "🔴"
                   draft = "📝 " if p["draft"] else ""
                   o.append(f'| {kind_cell(p)} | {draft}[{md(p["title"][:70])}]({p["url"]}) | `{p["repo"]}` | '
-                           f'{p["ver"] or "–"} | `{p["created"][:10]}` | {heat} {d}g |')
+                           f'{ver(p)} | `{p["created"][:10]}` | {heat} {d}g |')
               if not opened:
                   o.append("| | _nessuna PR aperta_ | | | | |")
               o += ["", "<sub>🤖 = mergiata da bot (es. robodoo) · 📝 = draft · età: 🟢 &lt;30g 🟡 &lt;90g 🔴 stale</sub>", "",
@@ -322,7 +379,7 @@ jobs:
 
           def main():
               prs = [parse(i) for i in search_prs()]
-              resolve_bot_merges(prs)
+              enrich(prs)
               merged_all = sorted((p for p in prs if p["merged"]), key=lambda p: p["merged"], reverse=True)
               open_all = sorted((p for p in prs if p["state"] == "open"), key=lambda p: p["created"], reverse=True)
               closed = len(prs) - len(merged_all) - len(open_all)
@@ -334,6 +391,8 @@ jobs:
                        uptime=f"{up // 365}y {up % 365 // 30}m (prima PR {first[:10]})",
                        last_merge=f"{ago(merged_all[0]['merged'])} · {merged_all[0]['repo']}" if merged_all else "–",
                        oldest_open=f"{max(days(p['created']) for p in open_all)} giorni" if open_all else "–",
+                       branches=" · ".join(f"{b} ({n})" for b, n in
+                                           Counter(p["branch"] or p["ver"] for p in prs if p["branch"] or p["ver"]).most_common(4)) or "–",
                        top_repos=Counter(p["repo"] for p in prs).most_common(5),
                        top_kinds=Counter(p["kind"] or "altro" for p in prs).most_common(5),
                        profile=profile())
