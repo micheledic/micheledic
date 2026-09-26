@@ -188,7 +188,7 @@
   <img alt="snake" src="assets/snake.svg"/>
 </picture>
 
-<sub>⚙️ build <code>2026-09-26 18:45 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
+<sub>⚙️ build <code>2026-09-26 18:48 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
 
 </div>
 <!-- AUTO:END -->
