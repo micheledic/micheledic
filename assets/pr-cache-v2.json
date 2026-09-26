@@ -1,0 +1,490 @@
+{
+"https://github.com/OCA/account-financial-reporting/pull/1327": {
+"base": "18.0",
+"merged": "2025-09-11T10:24:32Z"
+},
+"https://github.com/OCA/account-financial-reporting/pull/1387": {
+"base": "18.0",
+"merged": "2025-09-15T13:37:49Z"
+},
+"https://github.com/OCA/account-financial-reporting/pull/1413": {
+"base": "19.0",
+"merged": "2026-01-28T19:07:44Z"
+},
+"https://github.com/OCA/account-financial-reporting/pull/1511": {
+"base": "19.0",
+"merged": "2026-05-20T07:15:33Z"
+},
+"https://github.com/OCA/account-financial-reporting/pull/1546": {
+"base": "18.0",
+"merged": "2026-09-08T15:08:51Z"
+},
+"https://github.com/OCA/bank-payment/pull/1378": {
+"base": "17.0",
+"merged": "2024-11-22T11:28:56Z"
+},
+"https://github.com/OCA/l10n-italy/pull/3255": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4156": {
+"base": "16.0",
+"merged": "2025-09-09T19:12:25Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4250": {
+"base": "16.0",
+"merged": "2024-07-18T08:55:00Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4420": {
+"base": "16.0",
+"merged": "2024-10-29T10:46:59Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4481": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4485": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4486": {
+"base": "16.0",
+"merged": "2024-12-06T13:57:27Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4498": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4523": {
+"base": "16.0",
+"merged": "2025-01-10T09:11:54Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4623": {
+"base": "16.0",
+"merged": "2025-03-04T14:53:41Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4639": {
+"base": "16.0",
+"merged": "2025-10-03T07:59:27Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4679": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4692": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4700": {
+"base": "16.0",
+"merged": "2025-05-28T09:58:48Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4742": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4750": {
+"base": "16.0",
+"merged": "2025-09-05T09:43:53Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4752": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4780": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4783": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4789": {
+"base": "18.0",
+"merged": "2025-10-15T09:12:23Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4841": {
+"base": "18.0",
+"merged": "2026-06-05T13:02:45Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4852": {
+"base": "18.0",
+"merged": "2025-07-31T10:53:49Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4905": {
+"base": "18.0",
+"merged": "2026-06-11T09:10:13Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4934": {
+"base": "16.0",
+"merged": "2025-10-02T10:14:08Z"
+},
+"https://github.com/OCA/l10n-italy/pull/4948": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4973": {
+"base": "18.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/4974": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/l10n-italy/pull/5135": {
+"base": "18.0",
+"merged": "2026-03-12T15:25:32Z"
+},
+"https://github.com/OCA/l10n-italy/pull/5162": {
+"base": "18.0",
+"merged": "2026-04-03T07:45:35Z"
+},
+"https://github.com/OCA/l10n-italy/pull/5185": {
+"base": "16.0",
+"merged": "2026-05-04T15:09:50Z"
+},
+"https://github.com/OCA/l10n-italy/pull/5192": {
+"base": "18.0",
+"merged": "2026-08-21T09:03:21Z"
+},
+"https://github.com/OCA/l10n-italy/pull/5194": {
+"base": "18.0",
+"merged": "2026-06-05T15:59:27Z"
+},
+"https://github.com/OCA/l10n-italy/pull/5198": {
+"base": "18.0",
+"merged": "2026-06-05T08:34:11Z"
+},
+"https://github.com/OCA/l10n-italy/pull/5199": {
+"base": "18.0",
+"merged": "2026-06-05T12:33:13Z"
+},
+"https://github.com/OCA/l10n-italy/pull/5225": {
+"base": "16.0",
+"merged": "2026-06-12T08:45:30Z"
+},
+"https://github.com/OCA/partner-contact/pull/2351": {
+"base": "18.0",
+"merged": "2026-05-29T13:48:11Z"
+},
+"https://github.com/OCA/purchase-workflow/pull/2513": {
+"base": "17.0",
+"merged": "2025-06-09T12:30:26Z"
+},
+"https://github.com/OCA/report-print-send/pull/328": {
+"base": "16.0",
+"merged": "2023-07-28T08:27:25Z"
+},
+"https://github.com/OCA/report-print-send/pull/334": {
+"base": "16.0",
+"merged": "2023-07-27T12:00:50Z"
+},
+"https://github.com/OCA/report-print-send/pull/335": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/report-print-send/pull/369": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/report-print-send/pull/466": {
+"base": "19.0",
+"merged": "2026-09-23T08:54:33Z"
+},
+"https://github.com/OCA/reporting-engine/pull/1099": {
+"base": "19.0",
+"merged": "2025-11-24T07:58:27Z"
+},
+"https://github.com/OCA/server-tools/pull/2718": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/server-ux/pull/914": {
+"base": "17.0",
+"merged": ""
+},
+"https://github.com/OCA/social/pull/1725": {
+"base": "17.0",
+"merged": ""
+},
+"https://github.com/OCA/stock-logistics-warehouse/pull/1805": {
+"base": "16.0",
+"merged": "2023-09-21T17:51:24Z"
+},
+"https://github.com/OCA/stock-logistics-workflow/pull/1862": {
+"base": "18.0",
+"merged": "2025-02-11T16:37:49Z"
+},
+"https://github.com/OCA/timesheet/pull/606": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/OCA/web/pull/2640": {
+"base": "16.0",
+"merged": "2024-02-27T08:16:43Z"
+},
+"https://github.com/ingegniamo/account_move_bypass_unbalanced_check/pull/1": {
+"base": "14.0",
+"merged": "2024-02-20T11:59:15Z"
+},
+"https://github.com/ingegniamo/account_move_bypass_unbalanced_check/pull/2": {
+"base": "14.0",
+"merged": "2024-02-20T13:26:02Z"
+},
+"https://github.com/odoo/odoo/pull/114547": {
+"base": "16.0",
+"merged": "2023-04-03T18:42:25Z"
+},
+"https://github.com/odoo/odoo/pull/117586": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/119153": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/119983": {
+"base": "14.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/119999": {
+"base": "14.0",
+"merged": "2023-05-17T10:10:12Z"
+},
+"https://github.com/odoo/odoo/pull/120597": {
+"base": "16.0",
+"merged": "2023-05-10T16:26:08Z"
+},
+"https://github.com/odoo/odoo/pull/121436": {
+"base": "14.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/121569": {
+"base": "16.0",
+"merged": "2023-05-23T15:29:17Z"
+},
+"https://github.com/odoo/odoo/pull/121598": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/121868": {
+"base": "14.0",
+"merged": "2023-05-25T09:00:17Z"
+},
+"https://github.com/odoo/odoo/pull/123141": {
+"base": "16.0",
+"merged": "2023-06-02T16:33:13Z"
+},
+"https://github.com/odoo/odoo/pull/123839": {
+"base": "16.0",
+"merged": "2023-06-26T11:25:54Z"
+},
+"https://github.com/odoo/odoo/pull/127271": {
+"base": "14.0",
+"merged": "2023-07-14T12:30:24Z"
+},
+"https://github.com/odoo/odoo/pull/130916": {
+"base": "16.0",
+"merged": "2023-08-09T10:14:19Z"
+},
+"https://github.com/odoo/odoo/pull/131326": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/134003": {
+"base": "14.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/134720": {
+"base": "14.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/134774": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/134794": {
+"base": "14.0",
+"merged": "2023-11-15T09:28:49Z"
+},
+"https://github.com/odoo/odoo/pull/135451": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/135750": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/137973": {
+"base": "master",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/139420": {
+"base": "16.0",
+"merged": "2023-11-29T09:30:54Z"
+},
+"https://github.com/odoo/odoo/pull/141947": {
+"base": "17.0",
+"merged": "2023-11-21T21:29:11Z"
+},
+"https://github.com/odoo/odoo/pull/142554": {
+"base": "14.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/144482": {
+"base": "16.0",
+"merged": "2023-12-14T14:35:36Z"
+},
+"https://github.com/odoo/odoo/pull/145449": {
+"base": "17.0",
+"merged": "2023-12-08T03:25:07Z"
+},
+"https://github.com/odoo/odoo/pull/148994": {
+"base": "17.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/149735": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/151178": {
+"base": "15.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/159859": {
+"base": "17.0",
+"merged": "2024-04-02T12:09:20Z"
+},
+"https://github.com/odoo/odoo/pull/162450": {
+"base": "17.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/179378": {
+"base": "17.0",
+"merged": "2024-10-07T07:41:00Z"
+},
+"https://github.com/odoo/odoo/pull/184696": {
+"base": "17.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/185058": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/189172": {
+"base": "17.0",
+"merged": "2024-12-10T18:04:43Z"
+},
+"https://github.com/odoo/odoo/pull/190028": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/190722": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/194325": {
+"base": "17.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/196477": {
+"base": "16.0",
+"merged": "2026-03-06T13:05:01Z"
+},
+"https://github.com/odoo/odoo/pull/199943": {
+"base": "17.0",
+"merged": "2025-04-24T10:11:17Z"
+},
+"https://github.com/odoo/odoo/pull/206238": {
+"base": "18.0",
+"merged": "2025-05-28T11:17:15Z"
+},
+"https://github.com/odoo/odoo/pull/210342": {
+"base": "17.0",
+"merged": "2025-05-21T15:57:04Z"
+},
+"https://github.com/odoo/odoo/pull/211268": {
+"base": "16.0",
+"merged": "2025-05-23T10:45:26Z"
+},
+"https://github.com/odoo/odoo/pull/213180": {
+"base": "19.0",
+"merged": "2025-09-15T17:31:00Z"
+},
+"https://github.com/odoo/odoo/pull/217670": {
+"base": "18.0",
+"merged": "2025-07-14T14:59:05Z"
+},
+"https://github.com/odoo/odoo/pull/227696": {
+"base": "18.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/232628": {
+"base": "18.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/233907": {
+"base": "18.0",
+"merged": "2025-11-13T19:14:11Z"
+},
+"https://github.com/odoo/odoo/pull/234281": {
+"base": "18.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/251952": {
+"base": "18.0",
+"merged": "2026-03-17T16:22:36Z"
+},
+"https://github.com/odoo/odoo/pull/252687": {
+"base": "19.0",
+"merged": "2026-03-20T23:24:23Z"
+},
+"https://github.com/odoo/odoo/pull/264326": {
+"base": "18.0",
+"merged": "2026-05-13T18:38:23Z"
+},
+"https://github.com/odoo/odoo/pull/264573": {
+"base": "18.0",
+"merged": "2026-05-15T14:52:18Z"
+},
+"https://github.com/odoo/odoo/pull/266281": {
+"base": "master",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/271009": {
+"base": "18.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/273383": {
+"base": "19.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/273584": {
+"base": "19.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/273642": {
+"base": "19.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/274738": {
+"base": "18.0",
+"merged": "2026-07-10T12:35:54Z"
+},
+"https://github.com/odoo/odoo/pull/275931": {
+"base": "19.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/287180": {
+"base": "19.0",
+"merged": "2026-09-08T19:20:00Z"
+},
+"https://github.com/odoo/odoo/pull/288302": {
+"base": "17.0",
+"merged": "2026-09-23T15:52:30Z"
+},
+"https://github.com/odoo/odoo/pull/289135": {
+"base": "18.0",
+"merged": "2026-09-18T15:19:09Z"
+}
+}
