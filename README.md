@@ -9,125 +9,72 @@
 
 </div>
 
-## `❯ gh pr stats --group-by repo`
+## `❯ gh pr stats --group-by repo,branch`
 
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
+| Repo / branch | PR | ✅ | 🟢 | ❌ | Merge rate |
 |---|:-:|:-:|:-:|:-:|---|
-| [`odoo/odoo`](https://github.com/odoo/odoo) | **91** <sub>56%</sub> | 33 | 27 | 31 | `████░░░░` 52% |
-| [`OCA/l10n-italy`](https://github.com/OCA/l10n-italy) | **39** <sub>24%</sub> | 22 | 4 | 13 | `█████░░░` 63% |
-| [`OCA/account-financial-reporting`](https://github.com/OCA/account-financial-reporting) | **7** <sub>4%</sub> | 5 | 2 | 0 | `████████` 100% |
-| [`OCA/report-print-send`](https://github.com/OCA/report-print-send) | **6** <sub>4%</sub> | 3 | 1 | 2 | `█████░░░` 60% |
-| [`ingegniamo/account_move_bypass_unbalanced_check`](https://github.com/ingegniamo/account_move_bypass_unbalanced_check) | **2** <sub>1%</sub> | 2 | 0 | 0 | `████████` 100% |
-| [`OCA/bank-payment`](https://github.com/OCA/bank-payment) | **2** <sub>1%</sub> | 1 | 1 | 0 | `████████` 100% |
-| [`Smile-SA/odoo_addons`](https://github.com/Smile-SA/odoo_addons) | **2** <sub>1%</sub> | 0 | 2 | 0 | `░░░░░░░░` – |
-| [`OCA/partner-contact`](https://github.com/OCA/partner-contact) | **1** <sub>1%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/purchase-workflow`](https://github.com/OCA/purchase-workflow) | **1** <sub>1%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/reporting-engine`](https://github.com/OCA/reporting-engine) | **1** <sub>1%</sub> | 1 | 0 | 0 | `████████` 100% |
-| **Σ totale** | **163** | **72** | **41** | **50** | `█████░░░` 59% |
+| 📦 **[`odoo/odoo`](https://github.com/odoo/odoo)** | **91** <sub>56%</sub> | **33** | **27** | **31** | `████░░░░` 52% |
+| &emsp;├─ 🌿 `master` | 2 <sub>2%</sub> | 0 | 0 | 2 | `░░░░░░░░` 0% |
+| &emsp;├─ 🌿 `19.0` | 12 <sub>13%</sub> | 3 | 5 | 4 | `███░░░░░` 43% |
+| &emsp;├─ 🌿 `18.0` | 18 <sub>20%</sub> | 8 | 6 | 4 | `█████░░░` 67% |
+| &emsp;├─ 🌿 `17.0` | 21 <sub>23%</sub> | 8 | 9 | 4 | `█████░░░` 67% |
+| &emsp;├─ 🌿 `16.0` | 28 <sub>31%</sub> | 10 | 7 | 11 | `████░░░░` 48% |
+| &emsp;├─ 🌿 `15.0` | 1 <sub>1%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
+| &emsp;└─ 🌿 `14.0` | 9 <sub>10%</sub> | 4 | 0 | 5 | `████░░░░` 44% |
+| 📦 **[`OCA/l10n-italy`](https://github.com/OCA/l10n-italy)** | **39** <sub>24%</sub> | **22** | **4** | **13** | `█████░░░` 63% |
+| &emsp;├─ 🌿 `18.0` | 15 <sub>38%</sub> | 10 | 4 | 1 | `███████░` 91% |
+| &emsp;└─ 🌿 `16.0` | 24 <sub>62%</sub> | 12 | 0 | 12 | `████░░░░` 50% |
+| 📦 **[`OCA/account-financial-reporting`](https://github.com/OCA/account-financial-reporting)** | **7** <sub>4%</sub> | **5** | **2** | **0** | `████████` 100% |
+| &emsp;├─ 🌿 `19.0` | 3 <sub>43%</sub> | 2 | 1 | 0 | `████████` 100% |
+| &emsp;└─ 🌿 `18.0` | 4 <sub>57%</sub> | 3 | 1 | 0 | `████████` 100% |
+| 📦 **[`OCA/report-print-send`](https://github.com/OCA/report-print-send)** | **6** <sub>4%</sub> | **3** | **1** | **2** | `█████░░░` 60% |
+| &emsp;├─ 🌿 `19.0` | 2 <sub>33%</sub> | 1 | 1 | 0 | `████████` 100% |
+| &emsp;└─ 🌿 `16.0` | 4 <sub>67%</sub> | 2 | 0 | 2 | `████░░░░` 50% |
+| 📦 **[`ingegniamo/account_move_bypass_unbalanced_check`](https://github.com/ingegniamo/account_move_bypass_unbalanced_check)** | **2** <sub>1%</sub> | **2** | **0** | **0** | `████████` 100% |
+| &emsp;└─ 🌿 `14.0` | 2 <sub>100%</sub> | 2 | 0 | 0 | `████████` 100% |
+| 📦 **[`OCA/bank-payment`](https://github.com/OCA/bank-payment)** | **2** <sub>1%</sub> | **1** | **1** | **0** | `████████` 100% |
+| &emsp;└─ 🌿 `17.0` | 2 <sub>100%</sub> | 1 | 1 | 0 | `████████` 100% |
+| 📦 **[`Smile-SA/odoo_addons`](https://github.com/Smile-SA/odoo_addons)** | **2** <sub>1%</sub> | **0** | **2** | **0** | `░░░░░░░░` – |
+| &emsp;├─ 🌿 `16.0` | 1 <sub>50%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
+| &emsp;└─ 🌿 `14.0` | 1 <sub>50%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
+| 📦 **[`OCA/partner-contact`](https://github.com/OCA/partner-contact)** | **1** <sub>1%</sub> | **1** | **0** | **0** | `████████` 100% |
+| &emsp;└─ 🌿 `18.0` | 1 <sub>100%</sub> | 1 | 0 | 0 | `████████` 100% |
+| 📦 **[`OCA/purchase-workflow`](https://github.com/OCA/purchase-workflow)** | **1** <sub>1%</sub> | **1** | **0** | **0** | `████████` 100% |
+| &emsp;└─ 🌿 `17.0` | 1 <sub>100%</sub> | 1 | 0 | 0 | `████████` 100% |
+| 📦 **[`OCA/reporting-engine`](https://github.com/OCA/reporting-engine)** | **1** <sub>1%</sub> | **1** | **0** | **0** | `████████` 100% |
+| &emsp;└─ 🌿 `19.0` | 1 <sub>100%</sub> | 1 | 0 | 0 | `████████` 100% |
+| **Σ totale** | **163** <sub>100%</sub> | **72** | **41** | **50** | `█████░░░` 59% |
 
 <details><summary>📂 altri 11 repository</summary>
 
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
+| Repo / branch | PR | ✅ | 🟢 | ❌ | Merge rate |
 |---|:-:|:-:|:-:|:-:|---|
-| [`OCA/stock-logistics-warehouse`](https://github.com/OCA/stock-logistics-warehouse) | **1** <sub>1%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/stock-logistics-workflow`](https://github.com/OCA/stock-logistics-workflow) | **1** <sub>1%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/web`](https://github.com/OCA/web) | **1** <sub>1%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/account-closing`](https://github.com/OCA/account-closing) | **1** <sub>1%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-| [`OCA/account-financial-tools`](https://github.com/OCA/account-financial-tools) | **1** <sub>1%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-| [`OCA/multi-company`](https://github.com/OCA/multi-company) | **1** <sub>1%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-| [`OCA/server-tools`](https://github.com/OCA/server-tools) | **1** <sub>1%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-| [`OCA/server-ux`](https://github.com/OCA/server-ux) | **1** <sub>1%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-| [`OCA/social`](https://github.com/OCA/social) | **1** <sub>1%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-| [`OCA/timesheet`](https://github.com/OCA/timesheet) | **1** <sub>1%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-| [`odoo/docker`](https://github.com/odoo/docker) | **1** <sub>1%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
+| 📦 **[`OCA/stock-logistics-warehouse`](https://github.com/OCA/stock-logistics-warehouse)** | **1** <sub>1%</sub> | **1** | **0** | **0** | `████████` 100% |
+| &emsp;└─ 🌿 `16.0` | 1 <sub>100%</sub> | 1 | 0 | 0 | `████████` 100% |
+| 📦 **[`OCA/stock-logistics-workflow`](https://github.com/OCA/stock-logistics-workflow)** | **1** <sub>1%</sub> | **1** | **0** | **0** | `████████` 100% |
+| &emsp;└─ 🌿 `18.0` | 1 <sub>100%</sub> | 1 | 0 | 0 | `████████` 100% |
+| 📦 **[`OCA/web`](https://github.com/OCA/web)** | **1** <sub>1%</sub> | **1** | **0** | **0** | `████████` 100% |
+| &emsp;└─ 🌿 `16.0` | 1 <sub>100%</sub> | 1 | 0 | 0 | `████████` 100% |
+| 📦 **[`OCA/account-closing`](https://github.com/OCA/account-closing)** | **1** <sub>1%</sub> | **0** | **1** | **0** | `░░░░░░░░` – |
+| &emsp;└─ 🌿 `19.0` | 1 <sub>100%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
+| 📦 **[`OCA/account-financial-tools`](https://github.com/OCA/account-financial-tools)** | **1** <sub>1%</sub> | **0** | **1** | **0** | `░░░░░░░░` – |
+| &emsp;└─ 🌿 `18.0` | 1 <sub>100%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
+| 📦 **[`OCA/multi-company`](https://github.com/OCA/multi-company)** | **1** <sub>1%</sub> | **0** | **1** | **0** | `░░░░░░░░` – |
+| &emsp;└─ 🌿 `19.0` | 1 <sub>100%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
+| 📦 **[`OCA/server-tools`](https://github.com/OCA/server-tools)** | **1** <sub>1%</sub> | **0** | **0** | **1** | `░░░░░░░░` 0% |
+| &emsp;└─ 🌿 `16.0` | 1 <sub>100%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
+| 📦 **[`OCA/server-ux`](https://github.com/OCA/server-ux)** | **1** <sub>1%</sub> | **0** | **0** | **1** | `░░░░░░░░` 0% |
+| &emsp;└─ 🌿 `17.0` | 1 <sub>100%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
+| 📦 **[`OCA/social`](https://github.com/OCA/social)** | **1** <sub>1%</sub> | **0** | **0** | **1** | `░░░░░░░░` 0% |
+| &emsp;└─ 🌿 `17.0` | 1 <sub>100%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
+| 📦 **[`OCA/timesheet`](https://github.com/OCA/timesheet)** | **1** <sub>1%</sub> | **0** | **0** | **1** | `░░░░░░░░` 0% |
+| &emsp;└─ 🌿 `16.0` | 1 <sub>100%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
+| 📦 **[`odoo/docker`](https://github.com/odoo/docker)** | **1** <sub>1%</sub> | **0** | **1** | **0** | `░░░░░░░░` – |
+| &emsp;└─ 🌿 `master` | 1 <sub>100%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
 
 </details>
 
-<sub>PR: totale e % sul totale · ✅ merged · 🟢 open · ❌ closed senza merge · merge rate = merged / (merged + closed)</sub>
-
-## `❯ gh pr stats --group-by branch`
-
-| Branch | PR | ✅ | 🟢 | ❌ | Merge rate |
-|---|:-:|:-:|:-:|:-:|---|
-| 🌿 `master` | **3** <sub>2%</sub> | 0 | 1 | 2 | `░░░░░░░░` 0% |
-| 🌿 `19.0` | **20** <sub>12%</sub> | 7 | 9 | 4 | `█████░░░` 64% |
-| 🌿 `18.0` | **40** <sub>25%</sub> | 23 | 12 | 5 | `███████░` 82% |
-| 🌿 `17.0` | **26** <sub>16%</sub> | 10 | 10 | 6 | `█████░░░` 62% |
-| 🌿 `16.0` | **61** <sub>37%</sub> | 26 | 8 | 27 | `████░░░░` 49% |
-| 🌿 `15.0` | **1** <sub>1%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-| 🌿 `14.0` | **12** <sub>7%</sub> | 6 | 1 | 5 | `████░░░░` 55% |
-
-<details><summary>🔍 dettaglio per branch → repository</summary>
-
-#### 🌿 `master` · 3 PR · ✅ 0 · 🟢 1 · ❌ 2
-
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
-|---|:-:|:-:|:-:|:-:|---|
-| [`odoo/odoo`](https://github.com/odoo/odoo) | **2** <sub>67%</sub> | 0 | 0 | 2 | `░░░░░░░░` 0% |
-| [`odoo/docker`](https://github.com/odoo/docker) | **1** <sub>33%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-
-#### 🌿 `19.0` · 20 PR · ✅ 7 · 🟢 9 · ❌ 4
-
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
-|---|:-:|:-:|:-:|:-:|---|
-| [`odoo/odoo`](https://github.com/odoo/odoo) | **12** <sub>60%</sub> | 3 | 5 | 4 | `███░░░░░` 43% |
-| [`OCA/account-financial-reporting`](https://github.com/OCA/account-financial-reporting) | **3** <sub>15%</sub> | 2 | 1 | 0 | `████████` 100% |
-| [`OCA/report-print-send`](https://github.com/OCA/report-print-send) | **2** <sub>10%</sub> | 1 | 1 | 0 | `████████` 100% |
-| [`OCA/reporting-engine`](https://github.com/OCA/reporting-engine) | **1** <sub>5%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/account-closing`](https://github.com/OCA/account-closing) | **1** <sub>5%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-| [`OCA/multi-company`](https://github.com/OCA/multi-company) | **1** <sub>5%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-
-#### 🌿 `18.0` · 40 PR · ✅ 23 · 🟢 12 · ❌ 5
-
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
-|---|:-:|:-:|:-:|:-:|---|
-| [`odoo/odoo`](https://github.com/odoo/odoo) | **18** <sub>45%</sub> | 8 | 6 | 4 | `█████░░░` 67% |
-| [`OCA/l10n-italy`](https://github.com/OCA/l10n-italy) | **15** <sub>38%</sub> | 10 | 4 | 1 | `███████░` 91% |
-| [`OCA/account-financial-reporting`](https://github.com/OCA/account-financial-reporting) | **4** <sub>10%</sub> | 3 | 1 | 0 | `████████` 100% |
-| [`OCA/partner-contact`](https://github.com/OCA/partner-contact) | **1** <sub>2%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/stock-logistics-workflow`](https://github.com/OCA/stock-logistics-workflow) | **1** <sub>2%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/account-financial-tools`](https://github.com/OCA/account-financial-tools) | **1** <sub>2%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-
-#### 🌿 `17.0` · 26 PR · ✅ 10 · 🟢 10 · ❌ 6
-
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
-|---|:-:|:-:|:-:|:-:|---|
-| [`odoo/odoo`](https://github.com/odoo/odoo) | **21** <sub>81%</sub> | 8 | 9 | 4 | `█████░░░` 67% |
-| [`OCA/bank-payment`](https://github.com/OCA/bank-payment) | **2** <sub>8%</sub> | 1 | 1 | 0 | `████████` 100% |
-| [`OCA/purchase-workflow`](https://github.com/OCA/purchase-workflow) | **1** <sub>4%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/server-ux`](https://github.com/OCA/server-ux) | **1** <sub>4%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-| [`OCA/social`](https://github.com/OCA/social) | **1** <sub>4%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-
-#### 🌿 `16.0` · 61 PR · ✅ 26 · 🟢 8 · ❌ 27
-
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
-|---|:-:|:-:|:-:|:-:|---|
-| [`odoo/odoo`](https://github.com/odoo/odoo) | **28** <sub>46%</sub> | 10 | 7 | 11 | `████░░░░` 48% |
-| [`OCA/l10n-italy`](https://github.com/OCA/l10n-italy) | **24** <sub>39%</sub> | 12 | 0 | 12 | `████░░░░` 50% |
-| [`OCA/report-print-send`](https://github.com/OCA/report-print-send) | **4** <sub>7%</sub> | 2 | 0 | 2 | `████░░░░` 50% |
-| [`OCA/stock-logistics-warehouse`](https://github.com/OCA/stock-logistics-warehouse) | **1** <sub>2%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/web`](https://github.com/OCA/web) | **1** <sub>2%</sub> | 1 | 0 | 0 | `████████` 100% |
-| [`OCA/server-tools`](https://github.com/OCA/server-tools) | **1** <sub>2%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-| [`OCA/timesheet`](https://github.com/OCA/timesheet) | **1** <sub>2%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-| [`Smile-SA/odoo_addons`](https://github.com/Smile-SA/odoo_addons) | **1** <sub>2%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-
-#### 🌿 `15.0` · 1 PR · ✅ 0 · 🟢 0 · ❌ 1
-
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
-|---|:-:|:-:|:-:|:-:|---|
-| [`odoo/odoo`](https://github.com/odoo/odoo) | **1** <sub>100%</sub> | 0 | 0 | 1 | `░░░░░░░░` 0% |
-
-#### 🌿 `14.0` · 12 PR · ✅ 6 · 🟢 1 · ❌ 5
-
-| Repo | PR | ✅ | 🟢 | ❌ | Merge rate |
-|---|:-:|:-:|:-:|:-:|---|
-| [`odoo/odoo`](https://github.com/odoo/odoo) | **9** <sub>75%</sub> | 4 | 0 | 5 | `████░░░░` 44% |
-| [`ingegniamo/account_move_bypass_unbalanced_check`](https://github.com/ingegniamo/account_move_bypass_unbalanced_check) | **2** <sub>17%</sub> | 2 | 0 | 0 | `████████` 100% |
-| [`Smile-SA/odoo_addons`](https://github.com/Smile-SA/odoo_addons) | **1** <sub>8%</sub> | 0 | 1 | 0 | `░░░░░░░░` – |
-
-</details>
-
-<sub>branch = branch target della PR · % = quota sul totale (nel dettaglio: sul branch)</sub>
+<sub>📦 repo: % sul totale delle PR · 🌿 branch (di cui): % sulle PR del repo · ✅ merged · 🟢 open · ❌ closed senza merge · merge rate = merged / (merged + closed)</sub>
 
 ## `❯ gh pr list --author @me --state merged -L 20`
 
@@ -188,7 +135,7 @@
   <img alt="snake" src="assets/snake.svg"/>
 </picture>
 
-<sub>⚙️ build <code>2026-09-26 18:48 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
+<sub>⚙️ build <code>2026-09-26 18:50 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
 
 </div>
 <!-- AUTO:END -->
