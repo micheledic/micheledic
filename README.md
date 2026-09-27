@@ -135,7 +135,7 @@
   <img alt="snake" src="assets/snake.svg"/>
 </picture>
 
-<sub>⚙️ build <code>2026-09-26 20:47 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
+<sub>⚙️ build <code>2026-09-27 04:24 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
 
 </div>
 <!-- AUTO:END -->
