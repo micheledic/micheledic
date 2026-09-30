@@ -483,6 +483,10 @@
 "base": "17.0",
 "merged": "2026-09-23T15:52:30Z"
 },
+"https://github.com/odoo/odoo/pull/288959": {
+"base": "17.0",
+"merged": "2026-09-29T17:16:51Z"
+},
 "https://github.com/odoo/odoo/pull/289135": {
 "base": "18.0",
 "merged": "2026-09-18T15:19:09Z"
