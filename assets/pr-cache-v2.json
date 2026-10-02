@@ -191,6 +191,10 @@
 "base": "19.0",
 "merged": "2026-09-23T08:54:33Z"
 },
+"https://github.com/OCA/report-print-send/pull/478": {
+"base": "19.0",
+"merged": "2026-10-01T12:59:31Z"
+},
 "https://github.com/OCA/reporting-engine/pull/1099": {
 "base": "19.0",
 "merged": "2025-11-24T07:58:27Z"
