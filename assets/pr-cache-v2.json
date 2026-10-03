@@ -19,6 +19,14 @@
 "base": "18.0",
 "merged": "2026-09-08T15:08:51Z"
 },
+"https://github.com/OCA/account-financial-reporting/pull/1575": {
+"base": "18.0",
+"merged": "2026-10-02T13:39:51Z"
+},
+"https://github.com/OCA/account-financial-reporting/pull/1577": {
+"base": "19.0",
+"merged": "2026-10-02T13:34:30Z"
+},
 "https://github.com/OCA/bank-payment/pull/1378": {
 "base": "17.0",
 "merged": "2024-11-22T11:28:56Z"
@@ -494,5 +502,13 @@
 "https://github.com/odoo/odoo/pull/289135": {
 "base": "18.0",
 "merged": "2026-09-18T15:19:09Z"
+},
+"https://github.com/odoo/odoo/pull/291644": {
+"base": "19.0",
+"merged": "2026-10-02T14:33:13Z"
+},
+"https://github.com/odoo/odoo/pull/291793": {
+"base": "20.0",
+"merged": "2026-10-02T13:44:47Z"
 }
 }
