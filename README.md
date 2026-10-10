@@ -109,26 +109,26 @@
 
 | | PR | Repo | Branch | Aperta | Età |
 |:-:|---|---|:-:|---|:-:|
-| 🐛 `FIX` | [account_fiscal_position_allowed_journal: drop depends on journal compu](https://github.com/OCA/account-financial-tools/pull/2403) | `OCA/account-financial-tools` | `19.0` | `2026-10-08` | 🟢 0g |
-| 🐛 `FIX` | [product_multi_company: drop form company_id before write chain](https://github.com/OCA/multi-company/pull/1068) | `OCA/multi-company` | `19.0` | `2026-10-08` | 🟢 0g |
-| 🚚 `MIG` | [account_fiscalyear_closing: Migration to 20.0](https://github.com/OCA/account-closing/pull/395) | `OCA/account-closing` | `20.0` | `2026-10-06` | 🟢 2g |
-| 🚚 `MIG` | [account_tax_balance: Migration to 20.0](https://github.com/OCA/account-financial-reporting/pull/1586) | `OCA/account-financial-reporting` | `20.0` | `2026-10-05` | 🟢 3g |
-| 🐛 `FIX` | [account_financial_report: trial balance grouped by analytic account](https://github.com/OCA/account-financial-reporting/pull/1585) | `OCA/account-financial-reporting` | `19.0` | `2026-10-05` | 🟢 3g |
-| 🚚 `MIG` | [account_financial_report: Migration to 20.0](https://github.com/OCA/account-financial-reporting/pull/1584) | `OCA/account-financial-reporting` | `20.0` | `2026-10-05` | 🟢 3g |
-| ✨ `IMP` | [web: stop sending the unused token in file downloads](https://github.com/odoo/odoo/pull/291249) | `odoo/odoo` | `19.0` | `2026-09-30` | 🟢 8g |
-| 🐛 `FIX` | [stock: find push rule based on active companies](https://github.com/odoo/odoo/pull/290172) | `odoo/odoo` | `17.0` | `2026-09-23` | 🟢 15g |
-| 🐛 `FIX` | [l10n_it_riba_oca: balance the settlement move on a partial slip](https://github.com/OCA/l10n-italy/pull/5336) | `OCA/l10n-italy` | `18.0` | `2026-09-22` | 🟢 16g |
-| 🚚 `MIG` | [product_multi_company_stock: Migration to 19.0](https://github.com/OCA/multi-company/pull/1060) | `OCA/multi-company` | `19.0` | `2026-09-22` | 🟢 16g |
-| 🚚 `MIG` | [account_fiscal_position_allowed_journal](https://github.com/OCA/account-financial-tools/pull/2391) | `OCA/account-financial-tools` | `18.0` | `2026-09-22` | 🟢 16g |
-| ⚡ `PERF` | [stock: build the forecast report lines without per-line reads](https://github.com/odoo/odoo/pull/289241) | `odoo/odoo` | `19.0` | `2026-09-18` | 🟢 20g |
-| 🐛 `FIX` | [l10n_it_asset_management: monthly depreciation pro rata](https://github.com/OCA/l10n-italy/pull/5300) | `OCA/l10n-italy` | `18.0` | `2026-09-04` | 🟡 34g |
-| ⚡ `PERF` | [stock: skip report line details in forecast availability](https://github.com/odoo/odoo/pull/286695) | `odoo/odoo` | `19.0` | `2026-09-04` | 🟡 34g |
-| 🐛 `FIX` | [l10n_it_edi_doi_extension: wrong sign on sale refunds in _compute_invo](https://github.com/OCA/l10n-italy/pull/5297) | `OCA/l10n-italy` | `18.0` | `2026-09-02` | 🟡 36g |
-| 🐛 `FIX` | [tools: export code terms from nested addons paths](https://github.com/odoo/odoo/pull/285970) | `odoo/odoo` | `17.0` | `2026-09-01` | 🟡 37g |
-| 🐛 `FIX` | [repair: read owner availability from the product source location](https://github.com/odoo/odoo/pull/285715) | `odoo/odoo` | `18.0` | `2026-08-31` | 🟡 38g |
-| 🐛 `FIX` | [account_invoice_start_end_dates: Avoid same-label warning](https://github.com/OCA/account-closing/pull/377) | `OCA/account-closing` | `19.0` | `2026-06-22` | 🔴 108g |
-| 🐛 `FIX` | [sale_purchase: skip purchase generation for non-positive service qty](https://github.com/odoo/odoo/pull/270525) | `odoo/odoo` | `18.0` | `2026-06-17` | 🔴 113g |
-| 🐛 `FIX` | [purchase_stock, stock: avoid spurious return on PO qty edit with sub-l](https://github.com/odoo/odoo/pull/262969) | `odoo/odoo` | `18.0` | `2026-05-06` | 🔴 155g |
+| 🐛 `FIX` | [account_fiscal_position_allowed_journal: drop depends on journal compu](https://github.com/OCA/account-financial-tools/pull/2403) | `OCA/account-financial-tools` | `19.0` | `2026-10-08` | 🟢 1g |
+| 🐛 `FIX` | [product_multi_company: drop form company_id before write chain](https://github.com/OCA/multi-company/pull/1068) | `OCA/multi-company` | `19.0` | `2026-10-08` | 🟢 1g |
+| 🚚 `MIG` | [account_fiscalyear_closing: Migration to 20.0](https://github.com/OCA/account-closing/pull/395) | `OCA/account-closing` | `20.0` | `2026-10-06` | 🟢 3g |
+| 🚚 `MIG` | [account_tax_balance: Migration to 20.0](https://github.com/OCA/account-financial-reporting/pull/1586) | `OCA/account-financial-reporting` | `20.0` | `2026-10-05` | 🟢 4g |
+| 🐛 `FIX` | [account_financial_report: trial balance grouped by analytic account](https://github.com/OCA/account-financial-reporting/pull/1585) | `OCA/account-financial-reporting` | `19.0` | `2026-10-05` | 🟢 4g |
+| 🚚 `MIG` | [account_financial_report: Migration to 20.0](https://github.com/OCA/account-financial-reporting/pull/1584) | `OCA/account-financial-reporting` | `20.0` | `2026-10-05` | 🟢 4g |
+| ✨ `IMP` | [web: stop sending the unused token in file downloads](https://github.com/odoo/odoo/pull/291249) | `odoo/odoo` | `19.0` | `2026-09-30` | 🟢 9g |
+| 🐛 `FIX` | [stock: find push rule based on active companies](https://github.com/odoo/odoo/pull/290172) | `odoo/odoo` | `17.0` | `2026-09-23` | 🟢 16g |
+| 🐛 `FIX` | [l10n_it_riba_oca: balance the settlement move on a partial slip](https://github.com/OCA/l10n-italy/pull/5336) | `OCA/l10n-italy` | `18.0` | `2026-09-22` | 🟢 17g |
+| 🚚 `MIG` | [product_multi_company_stock: Migration to 19.0](https://github.com/OCA/multi-company/pull/1060) | `OCA/multi-company` | `19.0` | `2026-09-22` | 🟢 17g |
+| 🚚 `MIG` | [account_fiscal_position_allowed_journal](https://github.com/OCA/account-financial-tools/pull/2391) | `OCA/account-financial-tools` | `18.0` | `2026-09-22` | 🟢 17g |
+| ⚡ `PERF` | [stock: build the forecast report lines without per-line reads](https://github.com/odoo/odoo/pull/289241) | `odoo/odoo` | `19.0` | `2026-09-18` | 🟢 21g |
+| 🐛 `FIX` | [l10n_it_asset_management: monthly depreciation pro rata](https://github.com/OCA/l10n-italy/pull/5300) | `OCA/l10n-italy` | `18.0` | `2026-09-04` | 🟡 35g |
+| ⚡ `PERF` | [stock: skip report line details in forecast availability](https://github.com/odoo/odoo/pull/286695) | `odoo/odoo` | `19.0` | `2026-09-04` | 🟡 35g |
+| 🐛 `FIX` | [l10n_it_edi_doi_extension: wrong sign on sale refunds in _compute_invo](https://github.com/OCA/l10n-italy/pull/5297) | `OCA/l10n-italy` | `18.0` | `2026-09-02` | 🟡 37g |
+| 🐛 `FIX` | [tools: export code terms from nested addons paths](https://github.com/odoo/odoo/pull/285970) | `odoo/odoo` | `17.0` | `2026-09-01` | 🟡 38g |
+| 🐛 `FIX` | [repair: read owner availability from the product source location](https://github.com/odoo/odoo/pull/285715) | `odoo/odoo` | `18.0` | `2026-08-31` | 🟡 39g |
+| 🐛 `FIX` | [account_invoice_start_end_dates: Avoid same-label warning](https://github.com/OCA/account-closing/pull/377) | `OCA/account-closing` | `19.0` | `2026-06-22` | 🔴 109g |
+| 🐛 `FIX` | [sale_purchase: skip purchase generation for non-positive service qty](https://github.com/odoo/odoo/pull/270525) | `odoo/odoo` | `18.0` | `2026-06-17` | 🔴 114g |
+| 🐛 `FIX` | [purchase_stock, stock: avoid spurious return on PO qty edit with sub-l](https://github.com/odoo/odoo/pull/262969) | `odoo/odoo` | `18.0` | `2026-05-06` | 🔴 156g |
 
 <sub>🤖 = mergiata da bot (es. robodoo) · 📝 = draft · età: 🟢 &lt;30g 🟡 &lt;90g 🔴 stale</sub>
 
@@ -139,7 +139,7 @@
   <img alt="snake" src="assets/snake.svg"/>
 </picture>
 
-<sub>⚙️ build <code>2026-10-09 04:44 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
+<sub>⚙️ build <code>2026-10-10 04:29 UTC</code> · generato da GitHub Actions · `exit 0`</sub>
 
 </div>
 <!-- AUTO:END -->
