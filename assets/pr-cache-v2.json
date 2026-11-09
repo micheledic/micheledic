@@ -123,6 +123,10 @@
 "base": "18.0",
 "merged": "2026-06-11T09:10:13Z"
 },
+"https://github.com/OCA/l10n-italy/pull/4912": {
+"base": "18.0",
+"merged": ""
+},
 "https://github.com/OCA/l10n-italy/pull/4934": {
 "base": "16.0",
 "merged": "2025-10-02T10:14:08Z"
