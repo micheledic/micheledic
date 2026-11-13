@@ -522,5 +522,9 @@
 "https://github.com/odoo/odoo/pull/291793": {
 "base": "20.0",
 "merged": "2026-10-02T13:44:47Z"
+},
+"https://github.com/odoo/odoo/pull/302173": {
+"base": "19.0",
+"merged": ""
 }
 }
