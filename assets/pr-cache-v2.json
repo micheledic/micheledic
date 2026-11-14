@@ -375,6 +375,14 @@
 "base": "17.0",
 "merged": ""
 },
+"https://github.com/odoo/odoo/pull/171481": {
+"base": "16.0",
+"merged": ""
+},
+"https://github.com/odoo/odoo/pull/173693": {
+"base": "17.0",
+"merged": ""
+},
 "https://github.com/odoo/odoo/pull/179378": {
 "base": "17.0",
 "merged": "2024-10-07T07:41:00Z"
