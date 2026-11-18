@@ -27,6 +27,10 @@
 "base": "19.0",
 "merged": "2026-10-02T13:34:30Z"
 },
+"https://github.com/OCA/account-financial-reporting/pull/1586": {
+"base": "20.0",
+"merged": "2026-11-17T17:22:01Z"
+},
 "https://github.com/OCA/bank-payment/pull/1378": {
 "base": "17.0",
 "merged": "2024-11-22T11:28:56Z"
